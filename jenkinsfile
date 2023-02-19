@@ -18,7 +18,7 @@ node{
     }
     
     stage('BuildDockerImage') {
-        sh 'docker build -t mylandmarktech/springapp . '
+        sh 'docker build -t mylandmarktech/spring-boot-mongo . '
     }
     
     stage('pushImageReg')
@@ -27,7 +27,7 @@ node{
     
 }
         sh 'docker login -u willymore -p ${Dockerhubcredentials}'
-        sh 'docker push mylandmarktech/springapp'
+        sh 'docker push mylandmarktech/spring-boot-mongo'
     }
     
     
