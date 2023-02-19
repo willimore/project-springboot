@@ -18,7 +18,7 @@ node{
     }
     
     stage('BuildDockerImage') {
-        sh 'docker build -t mylandmarktech/spring-boot-mongo . '
+        sh 'docker build -t mylandmarktech/spring-boot-mongo -f Dockerfile . '
     }
     
     stage('pushImageReg')
