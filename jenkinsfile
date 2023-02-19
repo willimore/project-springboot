@@ -1,0 +1,34 @@
+node{
+    def mavenHome = tool name: 'maven3.6.3'
+    
+    stage('SCM Clone') {
+        git credentialsId: 'Githubcredentials', url: 'https://github.com/willimore/spring-boot-docker.git'
+    }
+    
+    stage('MavenBuild') {
+        //sh '${mavenHome}/bin/mvn clean package'
+    }
+    
+    stage('QualityReport') {
+        //sh '${mavenHome}/bin/mvn.sonar:sonar'
+    }
+    
+    stage('UploadToNexus'){
+        // sh '${mavenHome}/bin/mvn deploy'
+    }
+    
+    stage('BuildDockerImage') {
+        sh 'docker build -t mylandmarktech/spring-boot-mongo . '
+    }
+    
+    stage('pushImageReg')
+    {   
+        withCredentials([string(credentialsId: 'Dockerhubcredentials', variable: '')]) {
+    
+}
+        sh 'docker login -u willymore -p ${Dockerhubcredentials}'
+        sh 'docker push mylandmarktech/spring-boot-mongo'
+    }
+    
+    
+}
