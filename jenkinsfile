@@ -27,7 +27,7 @@ node{
     
 }
         sh 'docker login -u willymore -p ${Dockerhubcredentials}'
-        sh 'docker push mylandmarktech/spring-boot-mongo'
+        sh 'docker push mylandmarktech/springapp'
     }
     
     
